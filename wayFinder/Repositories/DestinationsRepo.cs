@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -78,5 +79,10 @@ public class DestinationsRepo
     1;
     ";
     _db.Execute(sql, new { id });
+  }
+
+  internal List<DestinationVM> GetAttendeesByDestId(int destinationId)
+  {
+    throw new NotImplementedException();
   }
 }

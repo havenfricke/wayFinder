@@ -6,4 +6,9 @@ namespace wayFinder.Models
     public string Name { get; set; }
     public string CreatorId { get; set; }
   }
+
+  public class DestinationVM : Destination
+  {
+    public Account? DestAtt { get; set; }
+  }
 }

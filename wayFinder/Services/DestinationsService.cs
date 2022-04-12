@@ -25,7 +25,6 @@ namespace wayFinder.Services
     }
 
 
-
     internal void DeleteDestination(int id, Account userInfo)
     {
       Destination dest = _dr.GetDestinationById(id);
@@ -54,5 +53,6 @@ namespace wayFinder.Services
         throw new Exception("Not yours to edit");
       }
     }
+
   }
 }
