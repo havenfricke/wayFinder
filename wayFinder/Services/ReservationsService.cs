@@ -20,9 +20,9 @@ namespace wayFinder.Services
       return _rr.GetAllResrByDestId(id);
     }
 
-    internal Reservation CreateReservation(Reservation resrData, int id)
+    internal Reservation CreateReservation(Reservation resrData)
     {
-      Destination des = _ds.GetDestinationById(id);
+      Destination des = _ds.GetDestinationById(resrData.DestinationId);
       resrData.DestinationId = des.Id;
       return _rr.CreateReservation(resrData);
     }

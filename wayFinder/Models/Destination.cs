@@ -6,6 +6,4 @@ namespace wayFinder.Models
     public string Name { get; set; }
     public string CreatorId { get; set; }
   }
-
-
 }

@@ -17,9 +17,9 @@ public class DestinationsRepo
   {
     string sql = @"
     INSERT INTO
-    destinations (name)
+    destinations (name, creatorId)
     VALUES
-    (@Name);
+    (@Name, @creatorId);
     SELECT LAST_INSERT_ID();
     ";
     int id = _db.ExecuteScalar<int>(sql, destData);

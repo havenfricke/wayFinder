@@ -21,13 +21,13 @@ namespace wayFinder.Controllers
 
     [HttpPost]
     [Authorize]
-    public async Task<ActionResult<Reservation>> CreateReservation([FromBody] Reservation resrData, int id)
+    public async Task<ActionResult<Reservation>> CreateReservation([FromBody] Reservation resrData)
     {
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
         resrData.CreatorId = userInfo.Id;
-        Reservation resr = _rs.CreateReservation(resrData, id);
+        Reservation resr = _rs.CreateReservation(resrData);
         return Created($"api/reservations/{resr.Id}", resr);
       }
       catch (System.Exception e)

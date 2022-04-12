@@ -31,9 +31,9 @@ public class ReservationsRepo
   {
     string sql = @"
     INSERT INTO reservations
-    (title, type, confirmation, address, date, notes, cost)
+    (title, type, confirmation, address, date, notes, cost, creatorId, destinationId)
     VALUES
-    (@Title, @Type, @Confirmation, @ Address, @Date, @Notes, @Cost);
+    (@Title, @Type, @Confirmation, @Address, @Date, @Notes, @Cost, @CreatorId, @DestinationId);
     SELECT LAST_INSERT_ID();
     ";
     int id = _db.ExecuteScalar<int>(sql, resrData);
