@@ -21,7 +21,7 @@ namespace wayFinder.Services
 
     internal List<Destination> GetAllDestinations(Account user)
     {
-      return _dr.GetAllDestinations(user);
+      return _dr.GetAllDestinations(user.Id);
     }
 
 

@@ -18,10 +18,10 @@ CREATE TABLE IF NOT EXISTS reservations(
   type TEXT NOT NULL,
   confirmation TEXT NOT NULL,
   address TEXT NOT NULL,
-  date TEXT NOT NULL,
+  date DATE NOT NULL,
   notes TEXT NOT NULL,
   cost INT NOT NULL,
-  creatorId INT NOT NULL,
+  creatorId VARCHAR(255) NOT NULL,
   destinationId INT NOT NULL,
   FOREIGN KEY (destinationId) REFERENCES destinations(id) ON DELETE CASCADE,
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE

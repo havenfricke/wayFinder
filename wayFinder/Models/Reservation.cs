@@ -1,3 +1,5 @@
+using System;
+
 namespace wayFinder.Models
 {
   public class Reservation
@@ -12,7 +14,7 @@ namespace wayFinder.Models
 
     public string Address { get; set; }
 
-    public string Date { get; set; }
+    public DateTime Date { get; set; }
 
     public string Notes { get; set; }
 

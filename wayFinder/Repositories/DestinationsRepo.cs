@@ -19,20 +19,28 @@ public class DestinationsRepo
 
   internal Destination CreateDestination(Destination destData)
   {
-    throw new NotImplementedException();
+    string sql = @"
+    INSERT INTO
+    destinations (name)
+    VALUES
+    (@Name);
+    SELECT LAST_INSERT_ID();
+    ";
+    _db.ExecuteScalar(sql, destData);
+    return destData;
   }
 
-  internal List<Destination> GetAllDestinations(Account user)
+  internal List<Destination> GetAllDestinations(string Id)
   {
-    string sql = @$"
+    string sql = @"
     SELECT
     *
     FROM 
-    destinations;
+    destinations
     WHERE
-    creatorId = {user.Id}
+    creatorId = @Id;
     ";
-    return _db.Query<Destination>(sql).ToList();
+    return _db.Query<Destination>(sql, new { Id }).ToList();
   }
 
 
@@ -43,12 +51,28 @@ public class DestinationsRepo
 
   internal void EditDestination(Destination original)
   {
-    throw new NotImplementedException();
+    string sql = @"
+    UPDATE
+    destinations
+    SET
+    name = @name
+    WHERE
+    id = @Id;
+    ";
+    _db.Execute(sql, original);
   }
 
   internal void DeleteDestination(int id)
   {
-    throw new NotImplementedException();
+    string sql = @"
+    DELETE FROM
+    destinations
+    WHERE
+    id = @id
+    LIMIT
+    1;
+    ";
+    _db.Execute(sql, new { id });
   }
 
 
