@@ -38,10 +38,52 @@ namespace wayFinder.Controllers
       }
     }
 
-
     [HttpGet]
-    public ActionResult<List<Destination>> GetAllDestinations();
+    [Authorize]
+    public ActionResult<List<Destination>> GetAllDestinations(Account user)
+    {
+      try
+      {
+        List<Destination> dest = _ds.GetAllDestinations(user);
+        return Ok(dest);
+      }
+      catch (System.Exception e)
+      {
 
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpPut("{id}")]
+    [Authorize]
+    public async Task<ActionResult<Destination>> EditDestination(int id, [FromBody] Destination destData)
+    {
+      try
+      {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        return Ok(_ds.EditDestination(id, destData, userInfo));
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpDelete("{id}")]
+    [Authorize]
+    public async Task<ActionResult<string>> DeleteDestination(int id)
+    {
+      try
+      {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        _ds.DeleteDestination(id, userInfo);
+        return Ok("Deletey Completey");
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
   }
 }
