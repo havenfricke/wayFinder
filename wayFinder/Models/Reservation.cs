@@ -20,7 +20,7 @@ namespace wayFinder.Models
 
     public int Cost { get; set; }
 
-    public int CreatorId { get; set; }
+    public string CreatorId { get; set; }
 
     public int DestinationId { get; set; }
   }

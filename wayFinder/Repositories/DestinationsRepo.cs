@@ -1,7 +1,3 @@
-
-
-
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -26,7 +22,8 @@ public class DestinationsRepo
     (@Name);
     SELECT LAST_INSERT_ID();
     ";
-    _db.ExecuteScalar(sql, destData);
+    int id = _db.ExecuteScalar<int>(sql, destData);
+    destData.Id = id;
     return destData;
   }
 
@@ -46,7 +43,15 @@ public class DestinationsRepo
 
   internal Destination GetDestinationById(int id)
   {
-    throw new NotImplementedException();
+    string sql = @"
+    SELECT
+    *
+    FROM
+    destinations
+    WHERE
+    id = @id;
+    ";
+    return _db.QueryFirstOrDefault<Destination>(sql, new { id });
   }
 
   internal void EditDestination(Destination original)
@@ -74,6 +79,4 @@ public class DestinationsRepo
     ";
     _db.Execute(sql, new { id });
   }
-
-
 }

@@ -85,5 +85,19 @@ namespace wayFinder.Controllers
       }
     }
 
+    [HttpGet("{id}/reservations")]
+    public ActionResult<List<Reservation>> GetAllResrByDestId(int id)
+    {
+      try
+      {
+        List<Reservation> resr = _rs.GetAllResrByDestId(id);
+        return Ok(resr);
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+  
   }
 }
