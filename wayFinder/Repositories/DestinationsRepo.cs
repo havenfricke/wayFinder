@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -41,18 +40,7 @@ public class DestinationsRepo
     return _db.Query<Destination>(sql, new { Id }).ToList();
   }
 
-  internal DestinationVM GetViewModelById(int destinationId)
-  {
-    string sql = @"
-    SELECT
-    *
-    FROM 
-    destinations
-    WHERE
-    id = @destinationId
-    ";
-    return _db.Query<DestinationVM>(sql, new { destinationId }).FirstOrDefault();
-  }
+
 
   internal Destination GetDestinationById(int id)
   {
@@ -93,8 +81,5 @@ public class DestinationsRepo
     _db.Execute(sql, new { id });
   }
 
-  internal List<DestinationVM> GetAttendeesByDestId(int destinationId)
-  {
-    throw new NotImplementedException();
-  }
+
 }

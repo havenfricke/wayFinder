@@ -24,10 +24,7 @@ namespace wayFinder.Services
       return _dr.GetAllDestinations(user.Id);
     }
 
-    internal DestinationVM GetViewModelById(int destinationId)
-    {
-      return _dr.GetViewModelById(destinationId);
-    }
+
 
     internal void DeleteDestination(int id, Account userInfo)
     {
@@ -57,6 +54,7 @@ namespace wayFinder.Services
         throw new Exception("Not yours to edit");
       }
     }
+
 
   }
 }

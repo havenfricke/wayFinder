@@ -39,6 +39,7 @@ namespace wayFinder
       services.AddTransient<DestinationsService>();
       services.AddTransient<ReservationsRepo>();
       services.AddTransient<ReservationsService>();
+
     }
 
     private void ConfigureCors(IServiceCollection services)
