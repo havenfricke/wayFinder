@@ -1,3 +1,4 @@
+using System;
 using wayFinder.Models;
 using wayFinder.Repositories;
 
@@ -17,9 +18,14 @@ namespace wayFinder.Services
 
     }
 
-    internal Attendee CreateAttendee(Attendee attendeeData)
+
+    internal DestinationVM Create(Attendee attendeeData)
     {
-      return _ar.CreateAttendee(attendeeData);
+      Attendee atten = _ar.Create(attendeeData);
+      DestinationVM dest = _ds.GetViewModelById(attendeeData.DestinationId);
+
+      dest.DestAttId = attendeeData.Id;
+      return dest;
     }
   }
 }

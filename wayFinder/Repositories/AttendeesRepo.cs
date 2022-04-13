@@ -13,7 +13,7 @@ namespace wayFinder.Repositories
       _db = db;
     }
 
-    internal Attendee CreateAttendee(Attendee attendeeData)
+    internal Attendee Create(Attendee attendeeData)
     {
       string sql = @"
       INSERT INTO attendees

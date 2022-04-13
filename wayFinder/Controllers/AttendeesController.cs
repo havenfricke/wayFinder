@@ -21,13 +21,13 @@ namespace wayFinder.Controllers
     [HttpPost]
     [Authorize]
 
-    public async Task<ActionResult<Attendee>> CreateAttendee([FromBody] Attendee attendeeData)
+    public async Task<ActionResult<DestinationVM>> CreateAttendee([FromBody] Attendee attendeeData)
     {
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
         attendeeData.Account = userInfo;
-        Attendee atten = _atts.CreateAttendee(attendeeData);
+        DestinationVM atten = _atts.Create(attendeeData);
         return Created($"api/attendees/{atten.Id}", atten);
       }
       catch (System.Exception e)

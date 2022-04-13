@@ -9,6 +9,7 @@ namespace wayFinder.Models
 
   public class DestinationVM : Destination
   {
+    public int? DestAttId { get; set; }
     public Account? DestAtt { get; set; }
   }
 }

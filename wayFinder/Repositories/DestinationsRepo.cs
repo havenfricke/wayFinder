@@ -41,6 +41,18 @@ public class DestinationsRepo
     return _db.Query<Destination>(sql, new { Id }).ToList();
   }
 
+  internal DestinationVM GetViewModelById(int destinationId)
+  {
+    string sql = @"
+    SELECT
+    *
+    FROM 
+    destinations
+    WHERE
+    id = @destinationId
+    ";
+    return _db.Query<DestinationVM>(sql, new { destinationId }).FirstOrDefault();
+  }
 
   internal Destination GetDestinationById(int id)
   {
