@@ -64,5 +64,10 @@ namespace wayFinder.Services
     {
       return _dr.GetAttendeesByDestinationId(destinationId);
     }
+
+    internal Destination GetDestinationById(int id)
+    {
+      return _dr.GetDestinationById(id);
+    }
   }
 }

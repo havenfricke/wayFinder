@@ -1,36 +1,47 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo" class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+  <div class="container-fluid">
+    <div class="row mt-3 mx-3">
+      <div class="hoverable" v-for="d in destinations" :key="d.id">
+        <DestinationButtons :destination="d" />
+      </div>
+    </div>
+    <div class="row mx-3">
+      <div class="col-12 bg-blue">fhdjkshfkdjsh</div>
     </div>
   </div>
 </template>
 
 <script>
+import { computed, watchEffect } from "@vue/runtime-core"
+import { logger } from "../utils/Logger"
+import { destinationsService } from "../services/DestinationsService"
+import { AppState } from "../AppState"
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    watchEffect(async () => {
+      try {
+        await destinationsService.getAllDestinations()
+      } catch (error) {
+        logger.error(error)
+      }
+    });
+    return {
+      destinations: computed(() => AppState.destinations)
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
-.home{
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-  .home-card{
-    width: 50vw;
-    > img{
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
+.hoverable:hover {
+  transform: scale(1.01);
+  filter: drop-shadow(0px 15px 10px rgba(0, 0, 0, 0.3));
+  transition: 50ms ease-in-out;
+  cursor: pointer;
+}
+.hoverable:active {
+  transform: scale(0.999);
+  transition: 50ms ease-in-out;
 }
 </style>

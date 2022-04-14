@@ -113,6 +113,20 @@ namespace wayFinder.Controllers
       }
     }
 
+    [HttpGet("{id}")]
+
+    public ActionResult<Destination> GetDestinationById(int id)
+    {
+      try
+      {
+        Destination dest = _ds.GetDestinationById(id);
+        return Ok(dest);
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
   }
 }
