@@ -59,5 +59,10 @@ namespace wayFinder.Services
     {
       return _dr.GetbyAttendeeAccountId(userId);
     }
+
+    internal List<DestinationAttendeeVM> GetAttendeesByDestinationId(int destinationId)
+    {
+      return _dr.GetAttendeesByDestinationId(destinationId);
+    }
   }
 }

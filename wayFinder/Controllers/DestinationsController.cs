@@ -99,6 +99,19 @@ namespace wayFinder.Controllers
       }
     }
 
+    [HttpGet("{id}/attendees")]
+    public ActionResult<List<DestinationAttendeeVM>> GetAttendeesByDestinationId(int destinationId)
+    {
+      try
+      {
+        List<DestinationAttendeeVM> attendee = _ds.GetAttendeesByDestinationId(destinationId);
+        return Ok(attendee);
+      }
+      catch (System.Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
 
   }

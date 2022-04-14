@@ -99,4 +99,19 @@ public class DestinationsRepo
       return advm;
     }, new { userId }).ToList();
   }
+
+  internal List<DestinationAttendeeVM> GetAttendeesByDestinationId(int destinationId)
+  {
+    string sql = @"
+    SELECT
+    att.id AS AttendeeId,
+    a.*
+    FROM
+    attendees att
+    JOIN accounts a ON a.id = att.accountId
+    WHERE
+    destinationId = @destinationId;
+    ";
+    return _db.Query<DestinationAttendeeVM>(sql, new { destinationId }).ToList();
+  }
 }

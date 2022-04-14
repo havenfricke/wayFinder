@@ -41,3 +41,11 @@ FROM
   destinations
 WHERE
   creatorId = '621e8902c4aedc58976eec67';
+SELECT
+  att.*,
+  a.*
+FROM
+  attendees att
+  JOIN accounts a ON a.id = att.accountId
+WHERE
+  destinationId = 1;
