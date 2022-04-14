@@ -26,3 +26,18 @@ CREATE TABLE IF NOT EXISTS reservations(
   FOREIGN KEY (destinationId) REFERENCES destinations(id) ON DELETE CASCADE,
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
+CREATE TABLE IF NOT EXISTS attendees(
+  id INT NOT NULL AUTO_INCREMENT primary key COMMENT 'primary key',
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+  destinationId INT NOT NULL,
+  accountId VARCHAR(255),
+  FOREIGN KEY (destinationId) REFERENCES destinations(id) ON DELETE CASCADE,
+  FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
+SELECT
+  *
+FROM
+  destinations
+WHERE
+  creatorId = '621e8902c4aedc58976eec67';

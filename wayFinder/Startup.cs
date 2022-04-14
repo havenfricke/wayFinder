@@ -39,6 +39,8 @@ namespace wayFinder
       services.AddTransient<DestinationsService>();
       services.AddTransient<ReservationsRepo>();
       services.AddTransient<ReservationsService>();
+      services.AddTransient<AttendeeRepo>();
+      services.AddTransient<AttendeeService>();
 
     }
 

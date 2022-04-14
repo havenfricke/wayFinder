@@ -40,16 +40,16 @@ namespace wayFinder.Controllers
 
     [HttpGet]
     [Authorize]
-    public ActionResult<List<Destination>> GetAllDestinations(Account user)
+    public async Task<ActionResult<List<Destination>>> GetAllDestinations()
     {
       try
       {
+        Account user = await HttpContext.GetUserInfoAsync<Account>();
         List<Destination> dest = _ds.GetAllDestinations(user);
         return Ok(dest);
       }
       catch (System.Exception e)
       {
-
         return BadRequest(e.Message);
       }
     }

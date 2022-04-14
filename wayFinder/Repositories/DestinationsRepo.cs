@@ -81,5 +81,22 @@ public class DestinationsRepo
     _db.Execute(sql, new { id });
   }
 
-
+  internal List<AttendeeDestinationVM> GetbyAttendeeAccountId(string userId)
+  {
+    string sql = @"
+    SELECT
+    acc.*,
+    d.*,
+    att.id AS AttendeeId
+    FROM attendees att
+    JOIN destinations d ON d.id = att.destinationId
+    JOIN accounts acc ON acc.id = d.creatorId
+    WHERE att.accountId = @userId; 
+    ";
+    return _db.Query<Account, AttendeeDestinationVM, AttendeeDestinationVM>(sql, (acc, advm) =>
+    {
+      advm.TripHost = acc;
+      return advm;
+    }, new { userId }).ToList();
+  }
 }
