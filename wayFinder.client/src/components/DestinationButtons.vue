@@ -1,10 +1,11 @@
 <template>
-  <div @click="setActive" class="col-2 bg-blue rounded-top">
+  <div @click="setActive" class="bg-blue text-center p-1 rounded-top">
     {{ destination.name }}
   </div>
 </template>
 
 <script>
+import { ref } from "@vue/reactivity"
 import { destinationsService } from "../services/DestinationsService"
 import { reservationsService } from "../services/ReservationsService"
 import { logger } from "../utils/Logger"
@@ -25,7 +26,7 @@ export default {
         } catch (error) {
           logger.error(error)
         }
-      }
+      },
     }
   }
 }
