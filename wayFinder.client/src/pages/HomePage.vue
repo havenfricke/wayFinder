@@ -51,18 +51,42 @@
 
     <form @submit.prevent="createResr">
       <div class="row bg-blue p-3 rounded mx-3 mt-2 justify-content-around">
-        <input class="col-2 rounded" type="text" placeholder="Title" />
-        <input class="col-2 rounded" type="text" placeholder="Type" /><input
+        <input
+          v-model="editable.title"
+          class="col-2 rounded"
+          type="text"
+          placeholder="Title"
+        />
+        <input
+          v-model="editable.type"
+          class="col-2 rounded"
+          type="text"
+          placeholder="Type"
+        /><input
+          v-model="editable.confirmation"
           class="col-2 rounded"
           type="text"
           placeholder="Confirmation #"
         />
-        <input class="col-2 rounded" type="text" placeholder="Address" /><input
+        <input
+          v-model="editable.address"
+          class="col-2 rounded"
+          type="text"
+          placeholder="Address"
+        /><input
+          v-model="editable.date"
           class="col-1 rounded"
           type="date"
           placeholder="Date"
         />
-        <input class="col-1 rounded" type="text" placeholder="Notes" /><input
+        <input
+          v-model="editable.notes"
+          class="col-1 rounded"
+          type="text"
+          placeholder="Notes"
+        />
+        <input
+          v-model="editable.cost"
           class="col-1 rounded"
           type="number"
           placeholder="Cost"
@@ -85,7 +109,9 @@ import { reservationsService } from "../services/ReservationsService"
 export default {
   name: 'Home',
   setup() {
-    const editable = ref({});
+    const editable = ref({
+      destinationId: AppState.activedest.id
+    });
     watchEffect(async () => {
       try {
         await destinationsService.getAllDestinations()
@@ -94,11 +120,12 @@ export default {
       }
     });
     return {
+      editable,
       async createResr() {
         try {
-          reservationsService.createResr()
+          reservationsService.createResr(editable.value)
         } catch (error) {
-
+          logger.error(error)
         }
       },
       destinations: computed(() => AppState.destinations),

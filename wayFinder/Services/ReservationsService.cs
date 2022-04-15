@@ -22,8 +22,6 @@ namespace wayFinder.Services
 
     internal Reservation CreateReservation(Reservation resrData)
     {
-      Destination des = _ds.GetDestinationById(resrData.DestinationId);
-      resrData.DestinationId = des.Id;
       return _rr.CreateReservation(resrData);
     }
 

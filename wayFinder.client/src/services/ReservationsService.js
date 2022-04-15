@@ -8,5 +8,12 @@ class ReservationsService {
     logger.log('getresrbydestid', res.data)
     AppState.reservations = res.data
   }
+
+  async createResr(resrData) {
+    resrData.destinationId = AppState.activedest.id
+    const res = await api.post('/api/reservations', resrData)
+    logger.log('createresr', res.data)
+    AppState.reservations = AppState.reservations.push(res.data)
+  }
 }
 export const reservationsService = new ReservationsService()
